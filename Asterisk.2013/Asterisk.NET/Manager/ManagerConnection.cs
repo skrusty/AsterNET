@@ -1002,6 +1002,8 @@ namespace AsterNET.Manager
                     throw new AuthenticationFailedException(loginResponse.Message);
                 }
 
+                mrReader.IsLogin = true;
+
                 // successfully logged in so assure that we keep trying to reconnect when disconnected
                 reconnectEnable = keepAlive;
 
@@ -1932,6 +1934,7 @@ namespace AsterNET.Manager
                     {
                         Action.LoginAction loginAction = new Action.LoginAction(username, "MD5", key);
                         SendAction(loginAction, null);
+                        mrReader.IsLogin = true;
                         fail = false;
                     }
                     catch { }
